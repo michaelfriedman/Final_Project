@@ -43,4 +43,3 @@ Final_Project
 - Nobody approves their own merge request.
 - Once a waffle issue is accomplished, the code is pushed up and everyone pulls to their master for the appropriate file. 
 - Send a slack message to the group informing everone before starting on a waffle issue.
-- 
