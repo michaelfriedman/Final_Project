@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KenoStream Sign-Up</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <form action="index.html" method="post">
+
+    <h1>KenoStream Sign-Up</h1>
+
+    <fieldset>
+      <legend><span class="form-icon">1</span>Just the facts please...</legend>
+      <label for="name">Name:</label>
+      <input type="text" id="username" name="user_name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="useremail" name="user_email">
+
+
+      <label>Age:</label>
+      <input type="radio" id="under_13" name="user_age"><label for="under_13" class="pretty">Under 13</label><br>
+      <input type="radio" id="over_13" name="user_age"><label for="over_13" class="pretty">13 or older</label>
+    </fieldset>
+
+
+    <fieldset>
+      <legend><span class="form-icon">2</span>Your Streaming Services</legend>
+      <input type="checkbox" id="netflix" value="stream_netflix" name="user_streams"><label class="pretty" for="development">Netflix</label><br>
+      <input type="checkbox" id="hulu" value="stream_hulu" name="user_streams"><label class="pretty" for="design">Hulu</label><br>
+      <input type="checkbox" id="hboGo" value="stream_hboGo" name="user_streams"><label class="pretty" for="business">HBO Go</label>
+    </fieldset>
+    <label for="source">Where did you hear about us?</label>
+    <select id="source" name="user_source">
+           <optgroup label="Search Engine">
+         <option value="google">Google</option>
+         <option value="bing">Bing</option>
+         <option value="yahoo">Yahoo</option>
+         <option value="baidu">Baidu</option>
+         <option value="ask">Ask</option>
+         <option value="duckduckgo">Duck Duck Go</option>
+       </optgroup>
+         <optgroup label="Advertisement">
+           <option value="tv">A TV Ad</option>
+           <option value="radio">A Radio Ad</option>
+           <option value="word">Word of Mouth</option>
+         </optgroup>
+           </select>
+
+
+    <button type="submit" id="submit" onclick="store">Sign Up</button>
+
+  </form>
+  <script src="form.js"></script>
+</body>
+
+</html>
