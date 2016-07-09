@@ -1,7 +1,7 @@
 //Constructor for building show objects
 var shows = [];
 function Show(title, servicesArray) {
-  this.services = [];
+  this.servicesArray = servicesArray;
   this.title = title;
   this.prod_year = null;
   this.rating = null;
@@ -10,11 +10,11 @@ function Show(title, servicesArray) {
 
 var himym = new Show('How I Met Your Mother', ['Netflix', 'Hulu']);
 var mindyProject = new Show('The Mindy Project', ['Hulu']);
-var got = new Show('Game Of Thrones', ['HBONow']);
+var got = new Show('Game of Thrones', ['HBONow']);
 var oitnb = new Show('Orange is the New Black', ['Netflix']);
 var hoc = new Show('House of Cards', ['Netflix']);
 var arrestDev = new Show('Arrested Development', ['Netflix', 'Hulu']);
-var blackMirror = new Show('Netflix');
+var blackMirror = new Show('Black Mirror',['Netflix']);
 var chefTable = new Show('Chef\'s Table', ['Netflix']);
 var johnOliver = new Show('Last Week Tonight with John Oliver', ['HBONow']);
 var billMaher = new Show('Real Time with Bill Maher', ['HBONow']);

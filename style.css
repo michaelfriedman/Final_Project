@@ -40,3 +40,15 @@ button {
 strong {
   font-size: 16px;
 }
+
+ul {
+  padding: 0px;
+  width: 300px;
+  list-style-type: none;
+}
+
+#results {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
