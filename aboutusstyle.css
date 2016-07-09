@@ -1,7 +1,7 @@
-{
+* {
   box-sizing: border-box;
 }
-​
+
 body {
   margin: 0;
   padding: 0;
@@ -9,10 +9,9 @@ body {
   font-family: 'Roboto', sans-serif;
   color: #222;
   background: #f7f5f0;
-  background-color: #9966ff
 }
 /* Link Styles */
-​
+
 a {
   text-decoration: none;
   color: #999;
@@ -20,12 +19,12 @@ a {
 a:hover {
   color: #6633ff;
 }
-​
+
 /* Section Styles */
-​
+
 .main-nav {
   width: 100%;
-  background: black;
+  background: #6666ff;
   min-height: 30px;
   padding: 10px;
   position: fixed;
@@ -39,7 +38,7 @@ a:hover {
   margin: 0 auto;
   padding: 0;
 }
-​
+
 .nav .name {
     display: block;
     margin-right: auto;
@@ -50,30 +49,44 @@ a:hover {
 }
 .nav a {
   transition: all .5s;
+  color: black;
 }
 .nav a:hover {
   color: white
 }
-​
+
 header {
-  text-align: center;
-  background: url('images/portland.jpg') no-repeat top center ;
-  background-size: cover;
+  /*text-align: center;*/
   overflow: hidden;
   padding-top: 60px;
   display: flex;
   flex-direction: row;
+  /*justify-content: space-between;*/*/
+
+}
+
+h1 {
+  width: 33.3%;
 }
 header {
   line-height: 1.5;
+
 }
-header .profile-image {
-  margin-top: 50px;
+#images {
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+
+
+}
+
+.profile-image {
+  margin-top: 0px;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   border: 3px solid white;
-  transition: all .5s;
+  /*transition: all .5s;*/
 }
 .tag {
   background-color: #efefef;
@@ -81,7 +94,7 @@ header .profile-image {
   padding: 10px;
   border-radius: 5px;
   display: table;
-  margin: 10px auto;
+  margin: 0px auto;
 }
 .location {
   background-color: #222;
@@ -90,22 +103,20 @@ header .profile-image {
 .card {
   margin: 30px;
   padding: 20px 40px 40px;
-  max-width: 500px;
+  max-width: 500px;*/
   text-align: left;
   background: #fff;
   border-bottom: 4px solid #ccc;
   border-radius: 6px;
   transition: all .5s;
+  width: 33.3%;
 }
-.card:hover {
-  border-color: #ff99ff;
-}
-​
+
 ul.skills {
   padding: 0;
   text-align: center;
 }
-​
+
 .skills li {
   border-radius: 6px;
   display: inline-block;
@@ -114,32 +125,32 @@ ul.skills {
   padding: 5px 10px;
   margin: 2px;
 }
-​
+
 .skills li:nth-child(odd) {
   background: #0399ff;
 }
-​
+
 footer {
   width: 100%;
   min-height: 30px;
   padding: 20px 0 40px 20px;
 }
-​
+
 footer .copyright {
   top: -8px;
   font-size: .75em;
 }
-​
+
 footer ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-​
+
 footer ul li {
   display: inline-block;
 }
-​
+
 a.social {
   display: inline-block;
   text-indent: -9999px;
@@ -165,42 +176,36 @@ a.social:hover {
 .clearfix {
   clear: both;
 }
-​
+
 /* Styles for larger screens */
 @media screen and (min-width: 720px) {
-​
+
   .flex {
       display: -ms-flexbox;      /* TWEENER - IE 10 */
       display: flex;
-      max-width: 1200px;
       -ms-flex-pack: distribute;
-      justify-content: space-around;
-      margin: 0 auto;
   }
-​
+
   header {
-    min-height: 470px;
+    min-height: 180px;
   }
-​
+
   .nav {
     max-width: 1200px;
     padding: 0 30px;
   }
-​
-​
+
+
   main {
     padding-top: 20px;
   }
-​
+
   main p {
     line-height: 1.6em;
+    text-align: left;
   }
-​
+
   footer {
     font-size: 1.3em;
-    max-width: 1200px;
-    margin: 40px auto;
+    margin: 40px auto;*/*/
   }
-​
-}
-1
