@@ -1,22 +1,25 @@
-var users = [];
-
 var userProfile = {
-  users: []
+  'users': []
 };
 
 function User(name, email) {
   this.name = name;
   this.email = email;
+  this.netflix = netflix.checked;
+  this.hulu = hulu.checked;
+  this.hboNow = hboNow.checked;
 }
 
-document.getElementById('submit').onclick = function() {
-  var name = document.getElementById('username').value;
-  var email = document.getElementById('email').value;
-  var netflix = document.getElementById('netflix');
-  var hulu = document.getElementById('hulu');
-  var hboGo = document.getElementById('hboGo');
-  var newUser = new User(name, email, netflix, hulu, hboGo);
+function getTheThings(event) {
+  event.preventDefault();
+  var user_name = event.target.user_name.value;
+  var user_email = event.target.user_email.value;
+  var newUser = new User(user_name, user_email);
+  console.log(newUser);
   var JsonUser = JSON.stringify(newUser);
-  users.push(JsonUser);
+  userProfile.users.push(JsonUser);
   localStorage.setItem('userProfile', JSON.stringify(userProfile));
 };
+
+var signupForm = document.getElementById('signupForm');
+signupForm.addEventListener('submit', getTheThings);

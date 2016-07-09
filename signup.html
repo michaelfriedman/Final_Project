@@ -11,7 +11,7 @@
 
 <body>
 
-  <form id='form' action="index.html" method="post">
+  <form id="signupForm">
 
     <h1>KenoStream Sign-Up</h1>
 
@@ -25,13 +25,13 @@
 
     <fieldset>
       <legend><span class="form-icon">2</span>Your Streaming Services</legend>
-      <input type="checkbox" id="netflix" value="stream_netflix" name="user_streams"><label class="pretty" for="development">Netflix</label><br>
-      <input type="checkbox" id="hulu" value="hulu" name="user_streams"><label class="pretty" for="design">Hulu</label><br>
-      <input type="checkbox" id="hboNow" value="hboNow" name="user_streams"><label class="pretty" for="business">HBO Now</label>
+      <input type="checkbox" id="netflix" name="netflix"><label class="pretty" for="development">Netflix</label><br>
+      <input type="checkbox" id="hulu" name="hulu"><label class="pretty" for="design">Hulu</label><br>
+      <input type="checkbox" id="hboNow" name="hboNow"><label class="pretty" for="business">HBO Go</label>
     </fieldset>
     <label for="source">Where did you hear about us?</label>
     <select id="source" name="user_source">
-           <optgroup label="Search Engine">
+          <optgroup label="Search Engine">
          <option value="google">Google</option>
          <option value="bing">Bing</option>
          <option value="yahoo">Yahoo</option>
@@ -47,7 +47,7 @@
            </select>
 
 
-    <button type="submit" id="submit" onclick="store">Sign Up</button>
+    <button type="submit" id="submit">Sign Up</button>
 
   </form>
   <script src="signup.js"></script>
