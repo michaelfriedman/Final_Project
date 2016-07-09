@@ -2,9 +2,12 @@ var tracker = {
   getForm: document.getElementById('searchForm'),
   menuForm: document.getElementById('menuForm'),
   searchInput: null,
+  searches: [],
   matches: [],
+  pushToLocal: [],
   icons: ['hbonow.png', 'hulu.jpg', 'netflix.jpg'],
   found: 0,
+  trackPushButton: 0,
   services: null,
 
   getSearchInput: function(event) {
@@ -20,15 +23,14 @@ var tracker = {
   writeResults: function(searchValue) {
     var listItem = document.createElement('label');
     listItem.className = 'results';
-    var container = document.createElement('div');
-    container.id = 'container';
     var check = document.createElement('input');
     check.type = 'checkbox';
     check.className = 'input';
+    check.id = searchValue;
+    tracker.searches.push(searchValue);
     listItem.textContent = searchValue;
     tracker.printIcons(listItem);
-    container.appendChild(check);
-    listItem.appendChild(container);
+    listItem.appendChild(check);
     tracker.menuForm.appendChild(listItem);
     tracker.checkLocalStorageStatus();
   },
@@ -62,10 +64,40 @@ var tracker = {
   },
 
   checkLocalStorageStatus: function() {
-    if (localStorage) {
-      console.log('Local storage exists.');
+    if (localStorage.userProfile) {
+      if (tracker.trackPushButton === 1) {
+        var deleteChild = document.getElementById('pushButton');
+        tracker.menuForm.removeChild(deleteChild);
+      }
+      var pushButton = document.createElement('button');
+      pushButton.id = 'pushButton';
+      pushButton.type = 'submit';
+      pushButton.textContent = 'Push to WatchList';
+      tracker.menuForm.appendChild(pushButton);
+      tracker.trackPushButton = 1;
+    }
+  },
+
+  storeSelectedMovies: function(event) {
+    event.preventDefault();
+    for (var searched in tracker.searches) {
+      console.log(tracker.searches);
+      var tempform = document.getElementById('menuForm');
+      var tempInput = document.getElementById(tracker.searches[searched]);
+      console.log(tempInput);
+      if (tempInput.checked) {
+        for (var match in tracker.matches) {
+          if (tracker.matches[match].title === tempInput.id) {
+            tracker.pushToLocal.push(tracker.matches[match]);
+            // tempform.innerHTML = '';
+            // tracker.trackPushButton = 0;
+            tracker.searches = [];
+          }
+        }
+      }
     }
   }
 };
 
 tracker.getForm.addEventListener('submit', tracker.getSearchInput);
+tracker.menuForm.addEventListener('submit', tracker.storeSelectedMovies);
