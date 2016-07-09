@@ -1,5 +1,7 @@
+var users = [];
+
 var userProfile = {
-  'users': []
+  users: []
 };
 
 function User(name, email) {
@@ -15,6 +17,6 @@ document.getElementById('submit').onclick = function() {
   var hboGo = document.getElementById('hboGo');
   var newUser = new User(name, email, netflix, hulu, hboGo);
   var JsonUser = JSON.stringify(newUser);
-  userProfile.users.push(JsonUser);
+  users.push(JsonUser);
   localStorage.setItem('userProfile', JSON.stringify(userProfile));
 };
