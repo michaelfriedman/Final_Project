@@ -48,21 +48,24 @@ img {
   width: 40px;
 }
 
-.input {
-  float: right;
-  width: 20px;
-  height: 50px;
-}
-
-.results {
+label {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0px;
   font-size: 25px;
   height: 60px;
-  margin-left: 20%;
-  margin-right: 20%;
+}
+
+.input {
+  float: right;
+  width: 20px;
+  height: 50px;
+}
+
+.itemPushed {
+  font-size: 18px;
+  margin-left: 10px;
 }
 
 #container {
