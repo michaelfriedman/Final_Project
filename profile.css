@@ -1,0 +1,42 @@
+/**,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}*/
+
+.container {
+  text-align: center;
+}
+
+body {
+  font-family: 'Georgia', Tahoma;
+  background-color: antiquewhite;
+}
+
+input[type="checkbox"] {
+  margin: 0 10px 10px 0;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+nav {
+  background-color: cornflowerblue;
+  height: 80px;
+  padding-top: 20px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid black;
+}
+
+button {
+  margin-top: 20px;
+}
+
+
+ul li {
+  list-style-type: none;
+}

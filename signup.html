@@ -2,55 +2,69 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KenoStream Sign-Up</title>
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="signup.css">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>KinoStream Sign-Up</title>
+  <link rel='stylesheet' href='normalize.css'>
+  <link rel='stylesheet' href='signup.css'>
 </head>
 
 <body>
 
-  <form id="signupForm">
+<div id='signup'>
+  <form id='signupForm'>
 
-    <h1>KenoStream Sign-Up</h1>
-
-    <fieldset>
-      <legend><span class="form-icon">1</span>Just the facts please...</legend>
-      <label for="username">Name:</label>
-      <input type="text" id="username" name="user_name">
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="user_email">
+    <h1>KinoStream Sign-Up</h1>
 
     <fieldset>
-      <legend><span class="form-icon">2</span>Your Streaming Services</legend>
-      <input type="checkbox" id="netflix" name="netflix"><label class="pretty" for="development">Netflix</label><br>
-      <input type="checkbox" id="hulu" name="hulu"><label class="pretty" for="design">Hulu</label><br>
-      <input type="checkbox" id="hboNow" name="hboNow"><label class="pretty" for="business">HBO Go</label>
+      <legend><span class='form-icon'>1</span>Just the facts please...</legend>
+      <label for='username'>Name:</label>
+      <input type='text' id='username' name='user_name' required>
+
+      <label for='email'>Email:</label>
+      <input type='email' id='email' name='user_email' required>
+
+    <fieldset>
+      <legend><span class='form-icon'>2</span>Your Streaming Services</legend>
+      <input type='checkbox' id='netflix' name='netflix'><label class='pretty' for='development'>Netflix</label><br>
+      <input type='checkbox' id='hulu' name='hulu'><label class='pretty' for='design'>Hulu</label><br>
+      <input type='checkbox' id='hboNow' name='hboNow'><label class='pretty' for='business'>HBO Go</label>
     </fieldset>
-    <label for="source">Where did you hear about us?</label>
-    <select id="source" name="user_source">
-          <optgroup label="Search Engine">
-         <option value="google">Google</option>
-         <option value="bing">Bing</option>
-         <option value="yahoo">Yahoo</option>
-         <option value="baidu">Baidu</option>
-         <option value="ask">Ask</option>
-         <option value="duckduckgo">Duck Duck Go</option>
+    <label for='source'>Where did you hear about us?</label>
+    <select id='source' name='user_source'>
+          <optgroup label='Search Engine'>
+         <option value='google'>Google</option>
+         <option value='bing'>Bing</option>
+         <option value='yahoo'>Yahoo</option>
+         <option value='baidu'>Baidu</option>
+         <option value='ask'>Ask</option>
+         <option value='duckduckgo'>Duck Duck Go</option>
        </optgroup>
-         <optgroup label="Advertisement">
-           <option value="tv">A TV Ad</option>
-           <option value="radio">A Radio Ad</option>
-           <option value="word">Word of Mouth</option>
+         <optgroup label='Advertisement'>
+           <option value='tv'>A TV Ad</option>
+           <option value='radio'>A Radio Ad</option>
+           <option value='word'>Word of Mouth</option>
          </optgroup>
            </select>
 
 
-    <button type="submit" id="submit">Sign Up</button>
+    <button type='submit' id='submit'>Sign Up</button>
 
   </form>
-  <script src="signup.js"></script>
+</div>
+  <div id='profileFrontPage'>
+    <section class='watchListWrapper'>
+    <h3>Watch List</h3>
+    <ul id='watchList'>
+    </ul>
+    <h3>Seen-It List</h3>
+    <ul id='seenItList'>
+    </ul>
+  </section>
+  </div>
+
+
+  <script src='signup.js'></script>
 </body>
 
 </html>

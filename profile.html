@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>KinoStream Profile Page</title>
+  <link rel='stylesheet' href='normalize.css'>
+  <link rel='stylesheet' href='profile.css'>
+</head>
+<header>
+  <nav>
+    <h1>KinoStream</h1>
+  </nav>
+</header>
+<body>
+  <section class='container'>
+    <form id='searchForm'>
+      <input type='text' name='searchShows' placeholder='Movie/Series Title'><br>
+      <button type='submit' name='searchSumbit'><strong>Search</strong></button>
+      <section id="results">
+        <ul id="resultsList">
+        </ul>
+      </section>
+    </form>
+    <form id="menuForm">
+    </form>
+    <section class='watchListWrapper'>
+    <h3>Watch List</h3>
+    <ul id='watchList'>
+    </ul>
+    <h3>Seen-It List</h3>
+    <ul id='seenItList'>
+    </ul>
+  </section>
+
+
+  </section>
+  <script type='text/javascript' src='shows.js'></script>
+  <script type='text/javascript' src='app.js'></script>
+  <script type='text/javascript' src='profile.js'></script>
+
+
+</body>
+
+</html>
