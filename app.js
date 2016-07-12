@@ -2,12 +2,13 @@ var tracker = {
   getForm: document.getElementById('searchForm'),
   menuForm: document.getElementById('menuForm'),
   searchInput: null,
-  searches: [],
+  searchMatches: [],
   matches: [],
   pushToLocal: [],
   icons: ['hbonow.png', 'hulu.jpg', 'netflix.jpg'],
   found: 0,
   trackPushButton: 0,
+  listNumber: 0,
   services: null,
 
   getSearchInput: function(event) {
@@ -15,19 +16,22 @@ var tracker = {
     this.searchInput = event.target.searchShows.value;
     tracker.querryDatabase(this.searchInput);
     if (tracker.found === 1) {
-      tracker.writeResults(this.searchInput);
-      tracker.found = 0;
+      if (tracker.searchMatches.indexOf(this.searchInput) === -1) {
+        tracker.writeResults(this.searchInput);
+        tracker.found = 0;
+      }
     }
   },
 
   writeResults: function(searchValue) {
     var listItem = document.createElement('label');
-    listItem.className = 'results';
+    listItem.id = '' + tracker.listNumber;
+    tracker.listNumber += 1;
     var check = document.createElement('input');
     check.type = 'checkbox';
     check.className = 'input';
     check.id = searchValue;
-    tracker.searches.push(searchValue);
+    tracker.searchMatches.push(searchValue);
     listItem.textContent = searchValue;
     tracker.printIcons(listItem);
     listItem.appendChild(check);
@@ -63,36 +67,63 @@ var tracker = {
     }
   },
 
+  checkButtonStatus: function() {
+    if (tracker.trackPushButton === 1) {
+      var deleteChild = document.getElementById('pushButton');
+      tracker.menuForm.removeChild(deleteChild);
+    }
+    var pushButton = document.createElement('button');
+    pushButton.id = 'pushButton';
+    pushButton.type = 'submit';
+    pushButton.textContent = 'Push to WatchList';
+    tracker.menuForm.appendChild(pushButton);
+    tracker.trackPushButton = 1;
+  },
+
   checkLocalStorageStatus: function() {
     if (localStorage.userProfile) {
-      if (tracker.trackPushButton === 1) {
-        var deleteChild = document.getElementById('pushButton');
-        tracker.menuForm.removeChild(deleteChild);
-      }
-      var pushButton = document.createElement('button');
-      pushButton.id = 'pushButton';
-      pushButton.type = 'submit';
-      pushButton.textContent = 'Push to WatchList';
-      tracker.menuForm.appendChild(pushButton);
-      tracker.trackPushButton = 1;
+      tracker.checkButtonStatus();
     }
   },
 
   storeSelectedMovies: function(event) {
     event.preventDefault();
-    for (var searched in tracker.searches) {
-      console.log(tracker.searches);
-      var tempform = document.getElementById('menuForm');
-      var tempInput = document.getElementById(tracker.searches[searched]);
-      console.log(tempInput);
+    for (var searched in tracker.searchMatches) {
+      var tempInput = document.getElementById(tracker.searchMatches[searched]);
       if (tempInput.checked) {
-        for (var match in tracker.matches) {
-          if (tracker.matches[match].title === tempInput.id) {
-            tracker.pushToLocal.push(tracker.matches[match]);
-            // tempform.innerHTML = '';
-            // tracker.trackPushButton = 0;
-            tracker.searches = [];
-          }
+        if (tracker.matches[searched].title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
+          tracker.pushToLocal.push(tracker.matches[searched]);
+        }
+        tempInput.remove();
+        var text = document.createElement('p');
+        text.className = 'itemPushed';
+        text.textContent = '(Pushed to WatchList)';
+        var label = document.getElementById('' + searched);
+        label.appendChild(text);
+        tracker.searchMatches.splice(searched, 1, 0);
+        tracker.pushMoviesToLocalStorage();
+      }
+    }
+  },
+  pushMoviesToLocalStorage: function() {
+    var user = JSON.parse(localStorage.getItem('userProfile'));
+    tracker.checkLocalStorageShows(user);
+    localStorage.setItem('userProfile', JSON.stringify(user));
+  },
+
+  checkLocalStorageShows: function(user) {
+    if (!user.shows) {
+      user.shows = [];
+      user.showNames = [];
+      for (var selected in tracker.pushToLocal) {
+        user.shows.push(tracker.pushToLocal[selected]);
+        user.showNames.push(tracker.pushToLocal[selected].title);
+      }
+    } else {
+      for (var checked in tracker.pushToLocal) {
+        if (user.showNames.indexOf(tracker.pushToLocal[checked].title) === -1) {
+          user.shows.push(tracker.pushToLocal[checked]);
+          user.showNames.push(tracker.pushToLocal[checked].title);
         }
       }
     }
