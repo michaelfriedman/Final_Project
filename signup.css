@@ -90,6 +90,10 @@ img {
   height: 40px;
 }
 
+#deleteButton {
+  display: none;
+}
+
 label.pretty {
   font-weight: 300;
   display: inline;

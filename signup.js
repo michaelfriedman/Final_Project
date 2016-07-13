@@ -44,7 +44,14 @@ function getUserMovies() {
 
 function updateLocalStorage() {
   var userProfile = JSON.parse(localStorage.getItem('userProfile'));
-  
+  console.log(userMovies);
+  userProfile.shows = userMovies;
+  userProfile.showNames = userMovieNames;
+  console.log(userProfile);
+  localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  console.log(userProfile);
+  location.reload();
 }
 
 function createLabels() {
@@ -91,12 +98,26 @@ function deleteSelectedItems(event) {
       userMovieNames.splice(movieQty, 1);
     }
   }
-  console.log('Something is happening...');
-  // location.reload();
+  updateLocalStorage();
+}
+
+function moveToSceneIt() {
+  console.log('Button is working');
+  var sceneItDiv = document.getElementById('sceneIt');
+  for (var i = 0; i < userMovieNames.length; i++) {
+    var check = document.getElementById(i + '');
+    if (check.checked) {
+      var moveThis = document.getElementById(userMovieNames[i]);
+      var cln = moveThis.cloneNode(true);
+      sceneItDiv.appendChild(cln);
+    }
+  }
 }
 
 var watchListForm = document.getElementById('watchListSubmit');
 watchListForm.addEventListener('submit', deleteSelectedItems);
+var sceneItButton = document.getElementById('sceneItButton');
+sceneItButton.addEventListener('click', moveToSceneIt);
 
 (function() {
   var signup = document.getElementById('signup');
@@ -106,5 +127,10 @@ watchListForm.addEventListener('submit', deleteSelectedItems);
     profile.style.display = 'block';
     getUserMovies();
     createLabels();
+    var deleteButton = document.getElementById('deleteButton');
+    if (userMovieNames.length > 0) {
+      console.log('Yes');
+      deleteButton.style.display = 'block';
+    }
   }
 })();
