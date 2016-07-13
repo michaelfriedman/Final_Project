@@ -1,5 +1,7 @@
 var userMovies = [];
 var userMovieNames = [];
+var sceneMovies = [];
+var sceneMovieNames = [];
 
 function User(name, email) {
   this.name = name;
@@ -103,6 +105,7 @@ function deleteSelectedItems(event) {
 
 function moveToSceneIt() {
   console.log('Button is working');
+  var watchListCont = document.getElementById('watchList');
   var sceneItDiv = document.getElementById('sceneIt');
   for (var i = 0; i < userMovieNames.length; i++) {
     var check = document.getElementById(i + '');
@@ -110,6 +113,11 @@ function moveToSceneIt() {
       var moveThis = document.getElementById(userMovieNames[i]);
       var cln = moveThis.cloneNode(true);
       sceneItDiv.appendChild(cln);
+      watchListCont.removeChild(moveThis);
+      sceneMovies.push(userMovies[i]);
+      sceneMovieNames.push(userMovieNames[i]);
+      userMovies.splice(i, 1);
+      userMovieNames.splice(i, 1);
     }
   }
 }
