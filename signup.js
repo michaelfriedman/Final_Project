@@ -1,7 +1,16 @@
 var userMovies = [];
 var userMovieNames = [];
-var sceneMovies = [];
-var sceneMovieNames = [];
+var userTempMovies = [];
+var userTempMovieNames = [];
+var tempMovieId = [];
+var sceneItMovies = [];
+var sceneItMovieNames = [];
+var sceneItMovieIds = [];
+var tempSceneItRemove = [];
+var tempCheckboxIds = [];
+var checkBoxIds = [];
+var tempSceneItMovies = [];
+var tempSceneItMovieNames = [];
 
 function User(name, email) {
   this.name = name;
@@ -23,6 +32,10 @@ function getTheThings(event) {
   var localStuff = JSON.parse(localStorage.getItem('userProfile'));
   localStuff.shows = [];
   localStuff.showNames = [];
+  localStuff.sceneItMovies = [];
+  localStuff.sceneItMovieNames = [];
+  localStuff.sceneItMovieIds = [];
+  localStuff.checkBoxIds = [];
   localStorage.setItem('userProfile', JSON.stringify(localStuff));
   var signup = document.getElementById('signup');
   var profile = document.getElementById('profileFrontPage');
@@ -38,6 +51,10 @@ signupForm.addEventListener('submit', getTheThings);
 
 function getUserMovies() {
   var userProfile = JSON.parse(localStorage.getItem('userProfile'));
+  sceneItMovies = userProfile.sceneItMovies;
+  sceneItMovieNames = userProfile.sceneItMovieNames;
+  sceneItMovieIds = userProfile.sceneItMovieIds;
+  tempCheckboxIds = userProfile.checkBoxIds;
   for (var show in userProfile.shows) {
     userMovies.push(userProfile.shows[show]);
     userMovieNames.push(userProfile.showNames[show]);
@@ -46,14 +63,14 @@ function getUserMovies() {
 
 function updateLocalStorage() {
   var userProfile = JSON.parse(localStorage.getItem('userProfile'));
-  console.log(userMovies);
   userProfile.shows = userMovies;
   userProfile.showNames = userMovieNames;
-  console.log(userProfile);
+  userProfile.sceneItMovies = sceneItMovies;
+  userProfile.sceneItMovieNames = sceneItMovieNames;
+  userProfile.sceneItMovieIds = sceneItMovieIds;
+  userProfile.checkBoxIds = checkBoxIds;
   localStorage.setItem('userProfile', JSON.stringify(userProfile));
   localStorage.setItem('userProfile', JSON.stringify(userProfile));
-  console.log(userProfile);
-  location.reload();
 }
 
 function createLabels() {
@@ -62,7 +79,6 @@ function createLabels() {
     var servicesArray = userMovies[movieName].servicesArray;
     var label = document.createElement('label');
     label.id = userMovieNames[movieName];
-    console.log(label.id);
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = movieName + '';
@@ -73,6 +89,24 @@ function createLabels() {
     div.appendChild(label);
   }
 };
+
+function createSceneItLabels() {
+  updateLocalStorage();
+  var div = document.getElementById('sceneIt');
+  for (var scene in sceneItMovies) {
+    var servicesArray2 = sceneItMovies[scene].servicesArray;
+    var label = document.createElement('label');
+    label.id = sceneItMovieNames[scene];
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = scene + '';
+    checkbox.style.marginLeft = '10px';
+    label.textContent = sceneItMovieNames[scene];
+    checkForIcons(servicesArray2, label);
+    label.appendChild(checkbox);
+    div.appendChild(label);
+  }
+}
 
 function checkForIcons(servicesArray, label) {
   for (var service in servicesArray) {
@@ -94,18 +128,62 @@ function deleteSelectedItems(event) {
     var truthy = document.getElementById(movieQty + '');
     if (truthy.checked) {
       var label = document.getElementById(userMovieNames[movieQty]);
-      console.log(label);
       label.remove();
-      userMovies.splice(movieQty, 1);
-      userMovieNames.splice(movieQty, 1);
+    } else {
+      userTempMovies.push(userMovies[movieQty]);
+      userTempMovieNames.push(userMovieNames[movieQty]);
+      tempMovieId.push(movieQty);
     }
   }
+  userMovies = userTempMovies;
+  userMovieNames = userTempMovieNames;
+  reassignIds();
   updateLocalStorage();
+  // location.reload();
+};
+
+function deleteSceneItMovie() {
+  console.log('clicked');
+  for (var i = 0; i < sceneItMovieIds.length; i++) {
+    console.log('Yes');
+    console.log(tempCheckboxIds);
+    var tempElem = document.getElementById(sceneItMovieIds[i]);
+    var tempCheck = document.getElementById(tempCheckboxIds[i]);
+    console.log(tempCheck);
+    console.log(tempElem);
+    if (tempCheck.checked) {
+      tempElem.remove();
+    } else {
+      tempSceneItRemove.push(sceneItMovieIds[i]);
+      tempCheckboxIds.push(i + '');
+      tempSceneItMovies.push(sceneItMovies[i]);
+      tempSceneItMovieNames.push(sceneItMovieNames[i]);
+    }
+  }
+  sceneItMovieIds = tempSceneItRemove;
+  checkBoxIds = tempCheckboxIds;
+  tempCheckboxIds = [];
+  sceneItMovies = tempSceneItMovies;
+  sceneItMovieNames = tempSceneItMovieNames;
+  tempSceneItMovies = [];
+  tempSceneItMovieNames = [];
+  updateLocalStorage();
+  location.reload();
+};
+
+function reassignIds() {
+  if (userMovies.length) {
+    for (var id in tempMovieId) {
+      var tempElem = document.getElementById(tempMovieId[id] + '');
+      tempElem.id = id + '';
+    }
+  }
+  userTempMovies = [];
+  userTempMovieNames = [];
+  tempMovieId = [];
 }
 
 function moveToSceneIt() {
-  console.log('Button is working');
-  var watchListCont = document.getElementById('watchList');
   var sceneItDiv = document.getElementById('sceneIt');
   for (var i = 0; i < userMovieNames.length; i++) {
     var check = document.getElementById(i + '');
@@ -113,19 +191,36 @@ function moveToSceneIt() {
       var moveThis = document.getElementById(userMovieNames[i]);
       var cln = moveThis.cloneNode(true);
       sceneItDiv.appendChild(cln);
-      watchListCont.removeChild(moveThis);
-      sceneMovies.push(userMovies[i]);
-      sceneMovieNames.push(userMovieNames[i]);
-      userMovies.splice(i, 1);
-      userMovieNames.splice(i, 1);
+      moveThis.remove();
+      sceneItMovies.push(userMovies[i]);
+      sceneItMovieNames.push(userMovieNames[i]);
+      sceneItMovieIds.push(userMovieNames[i]);
+      cln.id = userMovieNames[i];
+      console.log(sceneItMovieIds);
+      console.log(cln.id);
+      tempCheckboxIds.push(i + '');
+      console.log(tempCheckboxIds);
+    }
+    else {
+      userTempMovies.push(userMovies[i]);
+      userTempMovieNames.push(userMovieNames[i]);
+      tempMovieId.push(i + '');
     }
   }
-}
+  userMovies = userTempMovies;
+  userMovieNames = userTempMovieNames;
+  reassignIds();
+  updateLocalStorage();
+  console.log(tempCheckboxIds);
+  // location.reload();
+};
 
 var watchListForm = document.getElementById('watchListSubmit');
 watchListForm.addEventListener('submit', deleteSelectedItems);
 var sceneItButton = document.getElementById('sceneItButton');
 sceneItButton.addEventListener('click', moveToSceneIt);
+var deleteIt = document.getElementById('deleteSceneIt');
+deleteIt.addEventListener('click', deleteSceneItMovie);
 
 (function() {
   var signup = document.getElementById('signup');
@@ -135,10 +230,16 @@ sceneItButton.addEventListener('click', moveToSceneIt);
     profile.style.display = 'block';
     getUserMovies();
     createLabels();
+    createSceneItLabels();
     var deleteButton = document.getElementById('deleteButton');
+    var sceneItButton = document.getElementById('sceneItButton');
+    var deleteSceneItButton = document.getElementById('deleteSceneIt');
     if (userMovieNames.length > 0) {
-      console.log('Yes');
       deleteButton.style.display = 'block';
+      sceneItButton.style.display = 'block';
+    }
+    if (sceneItMovies.length > 0) {
+      deleteSceneItButton.style.display = 'block';
     }
   }
 })();
