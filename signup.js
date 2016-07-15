@@ -139,18 +139,12 @@ function deleteSelectedItems(event) {
   userMovieNames = userTempMovieNames;
   reassignIds();
   updateLocalStorage();
-  // location.reload();
 };
 
 function deleteSceneItMovie() {
-  console.log('clicked');
   for (var i = 0; i < sceneItMovieIds.length; i++) {
-    console.log('Yes');
-    console.log(tempCheckboxIds);
     var tempElem = document.getElementById(sceneItMovieIds[i]);
     var tempCheck = document.getElementById(tempCheckboxIds[i]);
-    console.log(tempCheck);
-    console.log(tempElem);
     if (tempCheck.checked) {
       tempElem.remove();
     } else {
@@ -168,7 +162,7 @@ function deleteSceneItMovie() {
   tempSceneItMovies = [];
   tempSceneItMovieNames = [];
   updateLocalStorage();
-  location.reload();
+  // location.reload();
 };
 
 function reassignIds() {
@@ -196,10 +190,7 @@ function moveToSceneIt() {
       sceneItMovieNames.push(userMovieNames[i]);
       sceneItMovieIds.push(userMovieNames[i]);
       cln.id = userMovieNames[i];
-      console.log(sceneItMovieIds);
-      console.log(cln.id);
       tempCheckboxIds.push(i + '');
-      console.log(tempCheckboxIds);
     }
     else {
       userTempMovies.push(userMovies[i]);
@@ -211,7 +202,6 @@ function moveToSceneIt() {
   userMovieNames = userTempMovieNames;
   reassignIds();
   updateLocalStorage();
-  console.log(tempCheckboxIds);
   // location.reload();
 };
 
