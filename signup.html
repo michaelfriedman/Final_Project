@@ -8,13 +8,20 @@
   <link rel='stylesheet' href='normalize.css'>
   <link rel='stylesheet' href='signup.css'>
 </head>
-
+<header>
+  <nav id='signupNav'>
+    <ul>
+    <li><a href="index.html">Home | Search</a></li>
+    <li><a href="signup.html">Signup | Profile</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+  </ul>
+</nav>
+</header>
 <body>
-
 <div id='signup'>
-  <form id='signupForm'>
+  <form id='signupForm' class='shadow'>
 
-    <h1>KinoStream Sign-Up</h1>
+    <h1><img id='kinostream' src="kinostream.jpg" alt="kinostream logo" /></h1>
 
     <fieldset>
       <legend><span class='form-icon'>1</span>Just the facts please...</legend>
@@ -48,7 +55,7 @@
            </select>
 
 
-    <button type='submit' id='submit'>Sign Up</button>
+    <button class='shadow' type='submit' id='submit'>Sign Up</button>
 
   </form>
 </div>

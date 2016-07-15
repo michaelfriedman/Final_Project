@@ -9,7 +9,7 @@
 body {
   font-family: 'Georgia', Tahoma;
   color: black;
-  background-color: white;
+  background-color: beige;
 }
 
 form {
@@ -132,16 +132,15 @@ label.pretty {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: white;
-  background: beige
+  background-color: beige;
 }
 
 #profileFrontPage {
   display: none;
   position: relative;
-  /*z-index: -1;*/
   width: 100%;
   height: 100%;
+  margin-top: 300px;
 }
 
 #deleteButton {
@@ -154,4 +153,56 @@ label.pretty {
 
 #sceneItButton {
   display: none;
+}
+.shadow {
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+#kinostream{
+  width: 300px;
+  height: 75px
+}
+ul {
+  background: dodgerblue;
+  margin-top: 0;
+}
+nav {
+  background: dodgerblue;
+  margin: 0;
+}
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  margin-top: 0;
+}
+nav ul li {
+  list-style-type: none;
+  margin-top: 0;
+  color: white;
+}
+ul li a {
+  text-decoration: none;
+}
+#watchListWrapper {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+}
+#deleteSceneIt {
+  border-color: #5FB6E1;
+  background: #5FB6E1;
+  color: #fff;
+  font-family: 'Varela Round', Helvetica, serif;
+  font-size: 18px;
+  padding: 5px;
+  margin: 1px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid whitesmoke;
+  color: #2C3238;
+  align-items: center;
 }

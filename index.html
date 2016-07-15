@@ -8,23 +8,37 @@
 
   </head>
   <header>
-    <nav>This is where the navigation bar goes</nav>
-    <div><img id="kinostream" src="kinostream.jpg" alt="kinostream logo" /></div>
+    <nav id='signupNav'>
+      <ul>
+      <li>Home | Search</li>
+      <li><a href="signup.html">Signup | Profile</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+    </ul>
+  </nav>
+    <div><img id="kinostream" class='shadow' src="kinostream.jpg" alt="kinostream logo" /></div>
   </header>
-  <main>
+  <main class='shadow'>
     <body id="body">
-      <img class='shadow' src="movie-theatre.png" alt="Movie Theatre Graphic Illustration" />
+      <img id='movie-theatre' class='shadow' src="movie-theatre.png" alt="Movie Theatre Graphic Illustration" />
 
 
       <form id="searchForm">
         <input type='text' name='searchShows' placeholder='Movie/Series Title'><br>
-        <button id='searchButton' type='submit' name='searchSumbit'><strong>Search</strong></button>
+        <button class ='shadow' id='searchButton' type='submit' name='searchSumbit'><strong>Search</strong></button>
       </form>
     </body>
     <form id="menuForm">
     </form>
   </main>
   <footer>
+    <div='sharebar'>
+    <dt><label><strong><br>Follow us:</strong></br></label></dt><a href="javascript:popWrapper('http://www.facebook.com/ups?WT.svl=Footer','pop_up_full_page')" style="null">
+		<a href="http://facebook.com"><img src="png/facebook.png" width="33" height="32" alt="facebook" border="0" style="none" target="_blank"></a>
+    <a href="http://twitter.com"><img src="png/twitter.png" width="33" height="32" alt="twiter" border="0" style="none" target="_blank"></a>
+    <a href="http://instagram.com"><img src="png/instagram.png" width="33" height="32" alt="instagram" border="0" style="none" target="_blank"></a>
+    <a href="http://googleplus.com"><img src="png/google-plus.png" width="33" height="32" alt="google plus" border="0" style="none" target="_blank"></a>
+    <a href="http://linkedin.com"><img src="png/linkedin.png" width="33" height="32" alt="linked in" border="0" style="none" target="_blank"></a>
+  </div>
   </footer>
   <script src="shows.js"></script>
   <script src="app.js"></script>
