@@ -3,6 +3,7 @@ var tracker = {
   menuForm: document.getElementById('menuForm'),
   searchInput: null,
   searchMatches: [],
+  apiMatches: [],
   matches: [],
   pushToLocal: [],
   icons: ['hbonow.png', 'hulu.jpg', 'netflix.jpg'],
@@ -127,8 +128,19 @@ var tracker = {
         }
       }
     }
+  },
+
+  checkIfInAPI: function(searchInput) {
+    netflixroulette.createRequest(searchInput, function (resp) {
+      console.log(resp.poster);
+      tracker.apiMatches.push(resp);
+      tracker.found = 1;
+      tracker.services = ['Netflix'];
+      tracker.matches.push(resp);
+    });
   }
 };
 
 tracker.getForm.addEventListener('submit', tracker.getSearchInput);
 tracker.menuForm.addEventListener('submit', tracker.storeSelectedMovies);
+tracker.checkIfInAPI('How I Met your mother');
