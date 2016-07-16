@@ -4,8 +4,8 @@ html {
 }
 
 body {
-  margin: 0px;
-  background-size: cover;
+  background: url(background-theatre.png) center no-repeat !important;
+  background-size: cover !important;
 }
 
 section {
@@ -17,7 +17,7 @@ section {
 nav {
   text-align: center;
   padding: 25px;
-  background-color: lightblue;
+  background-color: #5FB6E1 !important;
 }
 
 form {
@@ -40,7 +40,9 @@ button {
 }
 
 strong {
-  font-size: 16px;
+  font-size: 20px;
+  color: white;
+  font-family: sans-serif;
 }
 
 img {
@@ -107,7 +109,7 @@ display:block;
 #movie-theatre {
  border-radius:8px;
  height: 250px;
- width: 300px; 
+ width: 300px;
 }
 
 #pushButton {
@@ -312,4 +314,9 @@ nav a.selected, nav a:hover {
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
+}
+
+.sharing{
+  height: 28px;
+  width: 27px;
 }
