@@ -1,3 +1,39 @@
+var apiMatches = [];
+var apiTest = 0;
+// var element = document.getElementById('pic');
+var api = {
+  API_URL: 'http://netflixroulette.net/api/api.php?title=',
+  checkUserInput: function(userInput) {
+    var userValueEdited = userInput.replace(/\s/ig, '%20');
+    jQuery.extend({
+      getValues: function(url) {
+        var result = null;
+        $.ajax({
+          url: url,
+          type: 'get',
+          dataType: 'json',
+          async: false,
+          success: function(data) {
+            result = data;
+          }
+        });
+        return result;
+      }
+    });
+    var results = $.getValues(this.API_URL + userValueEdited);
+    if (results) {
+      console.log(results);
+      apiMatches.push(results);
+      apiTest = 1;
+    } else {
+      console.log('Value not found');
+    }
+    // tracker.found = 1;
+    // tracker.services = ['Netflix'];
+    // tracker.matches.push(resp);
+  }
+};
+
 var tracker = {
   getForm: document.getElementById('searchForm'),
   menuForm: document.getElementById('menuForm'),
@@ -15,11 +51,16 @@ var tracker = {
   getSearchInput: function(event) {
     event.preventDefault();
     this.searchInput = event.target.searchShows.value;
-    tracker.querryDatabase(this.searchInput);
-    if (tracker.found === 1) {
-      if (tracker.searchMatches.indexOf(this.searchInput) === -1) {
-        tracker.writeResults(this.searchInput);
-        tracker.found = 0;
+    if (apiTest === 1) {
+      api.checkUserInput(this.searchInput);
+      console.log(apiTest);
+    } else {
+      tracker.querryDatabase(this.searchInput);
+      if (tracker.found === 1) {
+        if (tracker.searchMatches.indexOf(this.searchInput) === -1) {
+          tracker.writeResults(this.searchInput);
+          tracker.found = 0;
+        }
       }
     }
   },
@@ -129,18 +170,7 @@ var tracker = {
       }
     }
   },
-
-  checkIfInAPI: function(searchInput) {
-    netflixroulette.createRequest(searchInput, function (resp) {
-      console.log(resp.poster);
-      tracker.apiMatches.push(resp);
-      tracker.found = 1;
-      tracker.services = ['Netflix'];
-      tracker.matches.push(resp);
-    });
-  }
 };
 
 tracker.getForm.addEventListener('submit', tracker.getSearchInput);
 tracker.menuForm.addEventListener('submit', tracker.storeSelectedMovies);
-tracker.checkIfInAPI('How I Met your mother');
