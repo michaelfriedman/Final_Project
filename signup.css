@@ -90,6 +90,7 @@ img {
   margin-left: 10px;
   width: 40px;
   height: 40px;
+  margin: 10px 0;
 }
 
 #deleteButton {
@@ -366,6 +367,11 @@ ul li a {
   height: 75px
 }
 
+#deleteContainer {
+  display: flex;
+  justify-content: center;
+}
+
 #deleteSceneIt {
   border-color: #5FB6E1;
   background: #5FB6E1;
@@ -381,6 +387,7 @@ ul li a {
   border: 1px solid whitesmoke;
   color: #2C3238;
   align-items: center;
+  margin-left: 0 auto;
 }
 
 #kinostream {
