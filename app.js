@@ -1,10 +1,55 @@
+var apiMatches = [];
+var apiTest = 0;
+var tempAPIMovie = null;
+var differentiator = null;
+// var element = document.getElementById('pic');
+var api = {
+  API_URL: 'http://netflixroulette.net/api/api.php?title=',
+  checkUserInput: function(userInput) {
+    var userValueEdited = userInput.replace(/\s/ig, '%20');
+    jQuery.extend({
+      getValues: function(url) {
+        var result = null;
+        $.ajax({
+          url: url,
+          type: 'get',
+          dataType: 'json',
+          async: false,
+          success: function(data) {
+            result = data;
+          }
+        });
+        return result;
+      }
+    });
+    var results = $.getValues(this.API_URL + userValueEdited);
+    if (results) {
+      console.log(results);
+      apiMatches.push(results);
+      apiTest = 1;
+      tempAPIMovie = results;
+      differentiator = 1;
+    } else {
+      console.log('Value not found');
+      tempAPIMovie = null;
+      results = null;
+      apiTest = 0;
+    }
+    // tracker.found = 1;
+    // tracker.services = ['Netflix'];
+    // tracker.matches.push(resp);
+  }
+};
+
 var tracker = {
   getForm: document.getElementById('searchForm'),
   menuForm: document.getElementById('menuForm'),
   searchInput: null,
   searchMatches: [],
+  apiMatches: [],
   matches: [],
   pushToLocal: [],
+  apiSearchMatch: null,
   icons: ['hbonow.png', 'hulu.jpg', 'netflix.jpg'],
   found: 0,
   trackPushButton: 0,
@@ -14,11 +59,21 @@ var tracker = {
   getSearchInput: function(event) {
     event.preventDefault();
     this.searchInput = event.target.searchShows.value;
-    tracker.querryDatabase(this.searchInput);
-    if (tracker.found === 1) {
-      if (tracker.searchMatches.indexOf(this.searchInput) === -1) {
-        tracker.writeResults(this.searchInput);
-        tracker.found = 0;
+    api.checkUserInput(this.searchInput);
+    if (apiTest === 1) {
+      console.log(apiTest);
+      tracker.services = ['Netflix'];
+      console.log(tempAPIMovie.show_title);
+      tracker.matches.push(tempAPIMovie);
+      tracker.writeResults();
+    } else {
+      tracker.querryDatabase(this.searchInput);
+      if (tracker.found === 1) {
+        differentiator = 2;
+        if (tracker.searchMatches.indexOf(this.searchInput) === -1) {
+          tracker.writeResults(this.searchInput);
+          tracker.found = 0;
+        }
       }
     }
   },
@@ -30,9 +85,16 @@ var tracker = {
     var check = document.createElement('input');
     check.type = 'checkbox';
     check.className = 'input';
-    check.id = searchValue;
-    tracker.searchMatches.push(searchValue);
-    listItem.textContent = searchValue;
+    if (differentiator === 1) {
+      tracker.searchMatches.push(tempAPIMovie.show_title);
+      listItem.textContent = tempAPIMovie.show_title;
+      check.id = tempAPIMovie.show_title;
+    } else {
+      tracker.searchMatches.push(searchValue);
+      listItem.textContent = searchValue;
+      check.id = searchValue;
+    }
+    console.log(tracker.searchMatches);
     tracker.printIcons(listItem);
     listItem.appendChild(check);
     tracker.menuForm.appendChild(listItem);
@@ -90,8 +152,14 @@ var tracker = {
     event.preventDefault();
     for (var searched in tracker.searchMatches) {
       var tempInput = document.getElementById(tracker.searchMatches[searched]);
+      console.log(tempInput);
       if (tempInput.checked) {
-        if (tracker.matches[searched].title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
+        console.log('working');
+        if (differentiator === 1) {
+          if (tracker.matches[searched].show_title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
+            tracker.pushToLocal.push(tracker.matches[searched]);
+          }
+        } else if (tracker.matches[searched].title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
           tracker.pushToLocal.push(tracker.matches[searched]);
         }
         tempInput.remove();
@@ -127,7 +195,7 @@ var tracker = {
         }
       }
     }
-  }
+  },
 };
 
 tracker.getForm.addEventListener('submit', tracker.getSearchInput);
