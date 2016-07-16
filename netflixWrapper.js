@@ -46,11 +46,11 @@
 
 })(window.netflixroulette || (window.netflixroulette = {}));
 
-// Examples
+//Examples
 
-// Requesting by title only
-netflixroulette.createRequest('bob ross', function (resp) {
-  console.log('Shameless\' Summary = ' + resp.poster);
+//Requesting by title only
+netflixroulette.createRequest('Breaking Bad', function (resp) {
+  console.log('Shameless\' Summary = ' + resp.summary);
 });
 
 // JSON Response, resp is a JSON object

@@ -5,6 +5,7 @@ html {
 
 body {
   margin: 0px;
+  background-size: cover;
 }
 
 section {
@@ -44,8 +45,8 @@ strong {
 
 img {
   margin-left: 10px;
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
 }
 
 label {
@@ -55,6 +56,11 @@ label {
   padding: 10px;
   font-size: 25px;
   height: 60px;
+}
+
+p {
+  text-align: center;
+  font-size: 20px;
 }
 
 .input {
