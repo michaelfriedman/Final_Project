@@ -63,6 +63,11 @@ var tracker = {
       tracker.services = ['Netflix'];
       console.log(tempAPIMovie.show_title);
       tracker.matches.push(tempAPIMovie);
+      if (document.getElementById('error')) {
+        console.log('yep');
+        var deleteMessage = document.getElementById('error');
+        deleteMessage.remove();
+      }
       tracker.writeResults();
     } else {
       tracker.querryDatabase(this.searchInput);
@@ -72,6 +77,16 @@ var tracker = {
           tracker.writeResults(this.searchInput);
           tracker.found = 0;
         }
+        if (document.getElementById('error')) {
+          var deleteError = document.getElementById('error');
+          deleteError.remove();
+        }
+      } else {
+        console.log('error');
+        var error = document.createElement('p');
+        error.id = 'error';
+        error.textContent = 'I\'m sorry, but that title could not be found.';
+        tracker.menuForm.appendChild(error);
       }
     }
   },
