@@ -8,13 +8,26 @@
   <link rel='stylesheet' href='normalize.css'>
   <link rel='stylesheet' href='signup.css'>
 </head>
-
+<header>
+  <nav>
+    <ul>
+    <li><a href="index.html">Home | Search</a></li>
+    <li>Signup | Watchlist</li>
+    <li><a href="aboutus.html">About Us</a></li>
+  </ul>
+</nav>
+</header>
 <body>
-
+  <div id="userNameDisplay">
+         <div id="icons"> </div>
+         <div id="icons2"> </div>
+         <div id="icons3"> </div>
+         <p id='username'> </p>
+    </div>
 <div id='signup'>
-  <form id='signupForm'>
+  <form id='signupForm' class='shadow'>
 
-    <h1>KinoStream Sign-Up</h1>
+    <h1><img id='kinostream' src="kinostream.jpg" alt="kinostream logo" /></h1>
 
     <fieldset>
       <legend><span class='form-icon'>1</span>Just the facts please...</legend>
@@ -48,20 +61,32 @@
            </select>
 
 
-    <button type='submit' id='submit'>Sign Up</button>
-
+    <button class='shadow' type='submit' id='submit'>Sign Up</button>
+    <footer>
+      <div='sharebar'>
+      <dt><label><strong><br>Follow us:</strong></br></label></dt><a href="javascript:popWrapper('http://www.facebook.com/ups?WT.svl=Footer','pop_up_full_page')" style="null">
+  		<a href="http://facebook.com"><img src="icons/facebook.png" width="20" height="18" alt="facebook" border="0" style="none" target="_blank"></a>
+      <a href="http://twitter.com"><img src="icons/twitter.png" width="20" height="18" alt="twiter" border="0" style="none" target="_blank"></a>
+      <a href="http://instagram.com"><img src="icons/instagram.png" width="20" height="18" alt="instagram" border="0" style="none" target="_blank"></a>
+      <a href="http://googleplus.com"><img src="icons/google-plus.png" width="20" height="18" alt="google plus" border="0" style="none" target="_blank"></a>
+      <a href="http://linkedin.com"><img src="icons/linkedin.png" width="20" height="18" alt="linked in" border="0" style="none" target="_blank"></a>
+    </div>
+    </footer>
   </form>
 </div>
   <div id='profileFrontPage'>
     <section class='watchListWrapper'>
-    <form id ='watchListSubmit'>
+    <form class='shadow' id ='watchListSubmit'>
       <h3>Watch List</h3>
       <div id='watchList'>
       </div>
-      <button type='submit' id="deleteButton">Delete</button>
+
     </form>
+    <div class='watchListButtons'>
+    <button type='submit' id="deleteButton">Delete</button>
     <button id="sceneItButton">Scene It!</button>
-    <form id='sceneItListSubmit'>
+  </div>
+    <form class='shadow' id='sceneItListSubmit'>
       <h3>Scene-It List</h3>
       <div id='sceneIt'>
       </div>

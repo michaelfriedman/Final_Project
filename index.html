@@ -6,21 +6,39 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <header>
-    <section>This is where the image or logo piece goes</section>
-    <nav>This is where the navigation bar goes</nav>
-  </header>
-  <main>
+      <nav id='signupNav'>
+        <ul>
+        <li>Home | Search</li>
+        <li><a href="signup.html">Signup | Profile</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+      <div><img class='face shadow' id="kinostream" src="kinostream.jpg" alt="kinostream logo" /></div>
+    </header>
+  <main class='shadow'>
     <body id="body" background="images.jpg">
-      <form id="searchForm">
-        <input type='text' name='searchShows' placeholder='Movie/Series Title'><br>
-        <button type='submit' name='searchSumbit'><strong>Search</strong></button>
-      </form>
-    </body>
-    <form id="menuForm">
-    </form>
-  </main>
-  <footer>
-  </footer>
+      <body id="body">
+  <img id='movie-theatre' class='shadow' src="movie-theatre.png" alt="Movie Theatre Graphic Illustration" />
+
+
+  <form id="searchForm">
+    <input type='text' name='searchShows' placeholder='Movie/Series Title'><br>
+    <button class ='shadow' id='searchButton' type='submit' name='searchSumbit'><strong>Search</strong></button>
+  </form>
+</body>
+<form id="menuForm">
+</form>
+</main>
+<footer>
+<div='sharebar'>
+<dt><label><strong><br>Follow us:</strong></br></label></dt><a href="javascript:popWrapper('http://www.facebook.com/ups?WT.svl=Footer','pop_up_full_page')" style="null">
+<a href="http://facebook.com"><img src="icons/facebook.png" width="33" height="32" alt="facebook" border="0" style="none" target="_blank"></a>
+<a href="http://twitter.com"><img src="icons/twitter.png" width="33" height="32" alt="twiter" border="0" style="none" target="_blank"></a>
+<a href="http://instagram.com"><img src="icons/instagram.png" width="33" height="32" alt="instagram" border="0" style="none" target="_blank"></a>
+<a href="http://googleplus.com"><img src="icons/google-plus.png" width="33" height="32" alt="google plus" border="0" style="none" target="_blank"></a>
+<a href="http://linkedin.com"><img src="icons/linkedin.png" width="33" height="32" alt="linked in" border="0" style="none" target="_blank"></a>
+</div>
+</footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="shows.js"></script>
   <script src="app.js"></script>
