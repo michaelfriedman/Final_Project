@@ -2,7 +2,7 @@
 var shows = [];
 function Show(title, servicesArray) {
   this.servicesArray = servicesArray;
-  this.title = title;
+  this.show_title = title;
   this.prod_year = null;
   this.rating = null;
   shows.push(this);
