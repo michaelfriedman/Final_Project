@@ -28,6 +28,7 @@ var api = {
       apiMatches.push(results);
       apiTest = 1;
       tempAPIMovie = results;
+      tempAPIMovie.servicesArray = ['Netflix'];
       differentiator = 1;
     } else {
       console.log('Value not found');
@@ -35,9 +36,6 @@ var api = {
       results = null;
       apiTest = 0;
     }
-    // tracker.found = 1;
-    // tracker.services = ['Netflix'];
-    // tracker.matches.push(resp);
   }
 };
 
@@ -83,11 +81,16 @@ var tracker = {
     listItem.id = '' + tracker.listNumber;
     tracker.listNumber += 1;
     var check = document.createElement('input');
+    var poster = document.createElement('img');
+    poster.className = 'poster';
+    poster.style.marginRight = '10px';
     check.type = 'checkbox';
     check.className = 'input';
     if (differentiator === 1) {
+      poster.src = tempAPIMovie.poster;
       tracker.searchMatches.push(tempAPIMovie.show_title);
       listItem.textContent = tempAPIMovie.show_title;
+      $(listItem).prepend(poster);
       check.id = tempAPIMovie.show_title;
     } else {
       tracker.searchMatches.push(searchValue);
@@ -103,7 +106,7 @@ var tracker = {
 
   querryDatabase: function(searchValue) {
     for (var show in shows) {
-      if (shows[show].title === searchValue) {
+      if (shows[show].show_title === searchValue) {
         tracker.found = 1;
         tracker.services = shows[show].servicesArray;
         tracker.matches.push(shows[show]);
@@ -159,7 +162,7 @@ var tracker = {
           if (tracker.matches[searched].show_title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
             tracker.pushToLocal.push(tracker.matches[searched]);
           }
-        } else if (tracker.matches[searched].title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
+        } else if (tracker.matches[searched].show_title === tempInput.id && tracker.pushToLocal.indexOf(tracker.matches[searched]) === -1) {
           tracker.pushToLocal.push(tracker.matches[searched]);
         }
         tempInput.remove();
@@ -185,13 +188,13 @@ var tracker = {
       user.showNames = [];
       for (var selected in tracker.pushToLocal) {
         user.shows.push(tracker.pushToLocal[selected]);
-        user.showNames.push(tracker.pushToLocal[selected].title);
+        user.showNames.push(tracker.pushToLocal[selected].show_title);
       }
     } else {
       for (var checked in tracker.pushToLocal) {
-        if (user.showNames.indexOf(tracker.pushToLocal[checked].title) === -1) {
+        if (user.showNames.indexOf(tracker.pushToLocal[checked].show_title) === -1) {
           user.shows.push(tracker.pushToLocal[checked]);
-          user.showNames.push(tracker.pushToLocal[checked].title);
+          user.showNames.push(tracker.pushToLocal[checked].show_title);
         }
       }
     }

@@ -84,6 +84,17 @@ function createLabels() {
     checkbox.id = movieName + '';
     checkbox.style.marginLeft = '10px';
     label.textContent = userMovieNames[movieName];
+    if (userMovies[movieName].poster) {
+      var poster = document.createElement('img');
+      poster.className = 'poster';
+      poster.style.marginRight = '10px';
+      console.log('poster');
+      poster.src = userMovies[movieName].poster;
+      console.log(poster.src);
+      console.log(userMovies[movieName]);
+      $(label).prepend(poster);
+    }
+
     checkForIcons(servicesArray, label);
     label.appendChild(checkbox);
     div.appendChild(label);
