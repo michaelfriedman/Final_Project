@@ -133,15 +133,15 @@ var tracker = {
     for (var service in tracker.services) {
       if (tracker.services[service] === 'Netflix') {
         var imgItem = document.createElement('img');
-        imgItem.src = 'Icons/' + tracker.icons[2];
+        imgItem.src = 'icons/' + tracker.icons[2];
         section.appendChild(imgItem);
       } else if (tracker.services[service] === 'Hulu') {
         var imgItem2 = document.createElement('img');
-        imgItem2.src = 'Icons/' + tracker.icons[1];
+        imgItem2.src = 'icons/' + tracker.icons[1];
         section.appendChild(imgItem2);
       } else if (tracker.services[service] === 'HBONow') {
         var imgItem3 = document.createElement('img');
-        imgItem3.src = 'Icons/' + tracker.icons[0];
+        imgItem3.src = 'icons/' + tracker.icons[0];
         section.appendChild(imgItem3);
       }
     }
