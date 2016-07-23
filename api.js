@@ -10,7 +10,7 @@ var api = {
         $.ajax({
           url: url,
           type: 'get',
-          dataType: 'json',
+          dataType: 'jsonp',
           async: false,
           success: function(data) {
             result = data;
