@@ -1,7 +1,7 @@
 var movies = [];
 // var element = document.getElementById('pic');
 var api = {
-  API_URL: 'http://netflixroulette.net/api/api.php?title=',
+  API_URL: 'https://netflixroulette.net/api/api.php?title=',
   checkUserInput: function(userInput) {
     var userValueEdited = userInput.replace(/\s/ig, '%20');
     jQuery.extend({
