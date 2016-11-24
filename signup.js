@@ -123,11 +123,11 @@ function checkForIcons(servicesArray, label) {
   for (var service in servicesArray) {
     var img = document.createElement('img');
     if (servicesArray[service] === 'HBONow') {
-      img.src = 'icons/hbonow.png';
+      img.src = 'Icons/hbonow.png';
     } else if (servicesArray[service] === 'Hulu') {
-      img.src = 'icons/hulu.jpg';
+      img.src = 'Icons/hulu.jpg';
     } else {
-      img.src = 'icons/netflix.jpg';
+      img.src = 'Icons/netflix.jpg';
     }
     label.appendChild(img);
   }
